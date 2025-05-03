@@ -4,13 +4,13 @@ models:
   - name: dim_listings_cleansed
     description: Cleansed table which contains Airbnb listings.
     columns:
-      
+
       - name: listing_id
         description: Primary key for the listing
         tests:
           - unique
           - not_null
-        
+
       - name: host_id
         description: The hosts's id. References the host table.
         tests:
@@ -23,7 +23,7 @@ models:
         description: Type of the apartment / room
         tests:
           - accepted_values:
-              values: ['Entire home/apt', 'Private room', 'Shared room', 'Hotel room']
+              values: [ 'Entire home/apt', 'Private room', 'Shared room', 'Hotel room' ]
 
       - name: minimum_nights
         description: '{{ doc("dim_listing_cleansed__minimum_nights") }}'
@@ -40,7 +40,7 @@ models:
           - dbt_expectations.expect_column_values_to_be_of_type:
               column_type: number
           - dbt_expectations.expect_column_quantile_values_to_be_between:
-              quantile: .99
+              quantile: 0.99
               min_value: 50
               max_value: 500
           - dbt_expectations.expect_column_max_to_be_between:
@@ -49,25 +49,27 @@ models:
                 severity: warn
 
   - name: dim_hosts_cleansed
-    description: Cleansed table which contains Airbnb hosts.
+    description: The 'dim_hosts_cleansed' model is a cleansed version of the raw hosts data from Airbnb. It contains information about the hosts, including their ID, name, and whether they are a superhost. The model also includes timestamps for when the host data was created and last updated. In cases where the host's name is not available, it is replaced with 'Anonymous'.
     columns:
       - name: host_id
         description: Primary key for the host
         tests:
           - not_null
           - unique
-      
+
       - name: host_name
         description: The host's name
         tests:
           - not_null
-      
+
       - name: is_superhost
         description: Whether the host is a superhost or not
         tests:
           - accepted_values:
-              values: ['t', 'f']
-  
+              values:
+                - f
+                - t
+
   - name: fct_reviews
     columns:
       - name: listing_id
@@ -79,8 +81,8 @@ models:
       - name: reviewer_name
         tests:
           - not_null
-      
+
       - name: review_sentiment
         tests:
           - accepted_values:
-              values: ['positive', 'neutral', 'negative']
+              values: [ 'positive', 'neutral', 'negative' ]

@@ -143,4 +143,13 @@ vars:
 ```
 
 ## Orchestration
-Pour utiliser Dagster,  créer un fichier 
+1. Pour utiliser Dagster,  installer les dependencies à partir du fichier `requirements.txt` à la racine du projet  
+2. Créer le répertoire de Dagster dans le projet
+```bash
+dagster-dbt project scaffold --project-name dbt_dagster_project --dbt-project-dir=dbtlearn --ignore-package-conflict
+```
+3. Pour démarrer Dagster
+```bash
+cd dbt_dagster_project
+DAGSTER_DBT_PARSE_PROJECT_ON_LOAD=1 dagster dev
+```
