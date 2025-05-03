@@ -1,0 +1,18 @@
+version: 2
+
+exposures:
+  - name: executive_dashboard
+    label: Executive Dashboard
+    type: dashboard
+    maturity: low
+    url: https://d4026663.us1a.app.preset.io/superset/dashboard/8/?edit=true&native_filters_key=1hlOjg1l9czAFF-HRaOU4CHf59VBnBwWSyrGE2TrNzRj74O3ZibUko_e7XwWZ9FQ
+    description: Executive Dashboard about Airbnb listings and hosts
+      
+
+    depends_on:
+      - ref('dim_listings_w_hosts')
+      - ref('mart_fullmoon_reviews')
+
+    owner:
+      name: Guole YANG
+      email: dbtlearn@gmail.com
