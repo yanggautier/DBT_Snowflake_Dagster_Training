@@ -11,8 +11,8 @@ Try running the following commands:
 
 Clonez le projet depuis GitHub :
 ```bash
-git clone [url-du-dépôt]
-cd [nom-du-projet]
+git clone https://github.com/yanggautier/DBT_Snowflake_Dagster_Training.git
+cd DBT_Snowflake_Dagster_Training
 ```
 
 
